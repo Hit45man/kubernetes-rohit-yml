@@ -1,0 +1,31 @@
+
+
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: myapp-rc
+  labels:
+    app: myapp
+    type: frontend
+spec:
+  replicas: 3
+  template:
+    metadata:
+      name: myapp-dev
+      labels:
+        app: myapp
+        type: frontend
+    spec:
+      containers:
+      - name: nginx-container 
+        image: nginx
+        ports:
+        - containerPort: 80
+
+
+
+#kubectl rolling-update dev-team  -f rc.yml 
+
+
+
+#https://ryaneschinger.com/blog/rolling-updates-kubernetes-replication-controllers-vs-deployments/

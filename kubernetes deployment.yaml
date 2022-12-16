@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: nginx
+specs:
+  containers:
+  - name: myapp
+    image: nginx
+    ports:
+    - containerPort: 80
+    volumeMounts:
+      - name: my-storage
+        mountPath: /home/ubuntu/rohit
+    volumes: 
+      - name: my-storage
+        persistentVolumeCliam: 
+        claimName: my-demo-claim
+        
+        
+# kubectl expose deployment  --type=NodePort --name=nginx-deployment 
+
